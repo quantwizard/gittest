@@ -1,2 +1,2 @@
 Git is a cool tool
-Git has branch management function
+Git is used to manage code
