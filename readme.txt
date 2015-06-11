@@ -1,2 +1,1 @@
-Git is a cool tool
-Git is used to manage code and branch management
+This repository is used to manage test code of mine
