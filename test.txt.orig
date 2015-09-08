@@ -1,5 +1,9 @@
 hello,eric,how are you?
 second line
+<<<<<<< HEAD
+333third line
+=======
 third333 line
+>>>>>>> test1
 
 fifth line
