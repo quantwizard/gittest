@@ -34,19 +34,30 @@ def getPassword(htmlPage):
     # print passwordNode[0].text
     return passwordNode[0].text.split(":")[-1]
 
+
 def main():
-    
+    flag = 0
     while(True):
-    # for i in range(10):
-        page = getPage()
-        password = getPassword(page)
-        global password_ori
-        if password != password_ori:
-            password_ori = password
-            cmd = "say 'password changed'"
-            Popen(cmd, shell=True)
-            print password_ori
-        sleep(10)
+        try:
+            page = getPage()
+            password = getPassword(page)
+            global password_ori
+            if password != password_ori:
+
+                password_ori = password
+                cmd = "say 'password changed'"
+                Popen(cmd, shell=True)
+                print password_ori
+                if flag >= 1:
+                    sleep(60*60*5+60*30)
+                    if flag > 65536:
+                        flag = 0
+                ++flag
+
+            sleep(60)
+        except Exception, e:
+            sleep(60*5)
+            continue
 
 if __name__ == '__main__':
     main()
