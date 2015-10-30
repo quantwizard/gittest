@@ -56,6 +56,7 @@ def main():
 
             sleep(60)
         except Exception, e:
+	    print "There is an exception: %s" % e
             sleep(60*5)
             continue
 
