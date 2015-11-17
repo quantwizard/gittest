@@ -1,0 +1,22 @@
+{
+  "name": "lesson2",
+  "version": "1.0.0",
+  "description": "learn less",
+  "main": "index.js",
+  "scripts": {
+    "test": "t"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/quantwizard/expressTest.git"
+  },
+  "keywords": [
+    "lesson2"
+  ],
+  "author": "liufeng",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "utility": "^1.5.0"
+  }
+}

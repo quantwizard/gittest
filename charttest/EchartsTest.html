@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="logResults.js"></script>
+        <script src="http://echarts.baidu.com/build/dist/echarts.js"></script> 
+    </head>
+    <body>
+        <div id='main' style="width:1200px;height:500px"></div>
+        <script type="text/javascript">
+            function getOptionData(hourDataList){
+                optionData = [];
+                var xAxisData = [];
+                var requestData = [];
+                for (var i=0;i<hourDataList.length;i++){
+                    for (key in hourDataList[i]){
+                        // console.log(key)
+                        var dateobj = new Date(parseInt(key)*1000);
+                        // console.log(dateobj.getHours()+":"+dateobj.getMinutes())
+                        xAxisData.push(dateobj.getHours()+":"+dateobj.getMinutes());
+                        // console.log(hourDataList[i][key])
+                        requestData.push(hourDataList[i][key]);
+                    }
+                }
+                optionData.push(xAxisData);
+                optionData.push(requestData);
+                return  optionData
+            }
+            
+            function getOptionDict(resultsList, position){
+                optionData = getOptionData(resultsList[position])
+                optionDict = {
+                    title : {
+                        text: '针对宝盒应用的http请求数折线图',
+                        
+                    },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+
+                    legend: {
+                        data:['http请求数']
+                    },
+                    toolbox: {
+                        show : false,
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            magicType : {show: true, type: ['line', 'bar']},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,  //???????
+                    grid : {
+                            height : '65%'
+                        },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            boundaryGap : true,
+                            data : optionData[0]
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            axisLabel : {
+                                formatter: '{value}次'
+                            }
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'http请求数',
+                            type:'line',
+                            data:optionData[1],
+                            markPoint : {
+                                data : [
+                                    {type : 'max', name: '最大值'},
+                                    {type : 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: '平均值'}
+                                ]
+                            }
+                        }
+                    ]
+                }
+                return optionDict
+            }
+            function getDataList(resultsList){
+                dataList = []
+                for (var i=0;i< results.length;i++){
+                    dataList.push(getOptionDict(resultsList, i))
+                }
+                return dataList
+            }
+            function getTimeList(){
+                timeList = []
+                for(var i=0;i<results.length;i++){
+                    for (var key in results[i][0]){
+                        var dateObj = new Date(parseInt(key)*1000);    
+                    }
+                    var timeStr = dateObj.toLocaleDateString()+" "+dateObj.getHours()+":00"
+                    timeList.push(timeStr)
+                }
+                return timeList
+            }
+
+            // 路径配置
+            require.config({
+                paths: {
+                    echarts: 'http://echarts.baidu.com/build/dist'
+                }
+            });
+
+            require(
+                [
+                    'echarts',
+                    'echarts/chart/line'
+                ],
+                function (ec) {
+                    // 基于准备好的dom，初始化echarts图表
+                    var myChart = ec.init(document.getElementById('main')); 
+                    
+                    option = {
+
+                        timeline : {
+                            //时间轴时间列表
+                            data:getTimeList(),
+                            //自定义处理，只显示年份，通过formatter来定义label显示格式
+                            label:{
+                                rotate : -30,
+                                interval : 0,
+                                formatter : function(s) {
+                                return s.slice(5)
+                              }
+                            },
+                            //时间轴的位置设定
+                            height: '18%',
+                            // x: 30,
+                            // y: 420,
+                            // padding:[50,30,60,40],
+                            //时间轴播放控制
+                            autoPlay : true,
+                            controlPosition : 'left'
+                        },
+                        options : getDataList(results)
+                    };
+                    // 为echarts对象加载数据 
+                    myChart.setOption(option); 
+                }
+            );
+        </script>
+    </body>
+</html>

@@ -21,7 +21,7 @@ resp, content =h.request(url2, "PUT", body, headers={'content-type':'text/plain'
 '''
 httplib2.debuglevel = 1
 http = httplib2.Http(".cache")
-url="http://uliweb.clkg.org/login"
+url = "http://uliweb.clkg.org/login"
 url2 = "http://mag-build.prognet.com/~build/builddb.cgi?start_date=&end_date=&days_ago=3&build_type=&id=&tag=&branch=jupiter&module=player_master&profile=&user=&platform=&options="
 url3 = "http://www.diveintopython.net/"
 url4 = "http://mag-build.prognet.com/~build/build/jupiter/player_master/player_master-150524-998"
@@ -29,12 +29,12 @@ url4 = "http://mag-build.prognet.com/~build/build/jupiter/player_master/player_m
 version = url4.split("/")[-1]
 print version
 
-body={'username':'python','password':'python','rememberme':"True"}
-headers={'Content-type':'application/x-www-form-urlencoded',
-        "Connection": "Keep-Alive",
-        "cache-control":"no-cache",
-        }
-response,content = http.request(url2,'GET', headers=headers,)
+body = {'username': 'python', 'password': 'python', 'rememberme': "True"}
+headers = {'Content-type': 'application/x-www-form-urlencoded',
+           "Connection": "Keep-Alive",
+           "cache-control": "no-cache",
+           }
+response, content = http.request(url2, 'GET', headers=headers,)
 print "---------content----------------"
 print response
 print "--------------------------------"

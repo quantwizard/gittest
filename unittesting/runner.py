@@ -1,7 +1,8 @@
-#!/usr/bin/env python  
-#encoding: utf-8  
-  
-import unittest  
+#!/usr/bin/env python
+#encoding: utf-8
+
+
+import unittest
 import myclass, mytest
 import mytest2
 
