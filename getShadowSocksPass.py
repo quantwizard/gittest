@@ -54,7 +54,7 @@ def main():
                         flag = 0
                 ++flag
 
-            sleep(60)
+            sleep(60*3)
         except Exception, e:
 	    print "There is an exception: %s" % e
             sleep(60*5)
