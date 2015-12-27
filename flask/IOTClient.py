@@ -4,6 +4,8 @@
 import httplib2
 import base64
 import json
+from urlparse import urljoin
+
 # httplib2.debuglevel = 1
 
 
@@ -36,7 +38,7 @@ class APIObj(object):
             headers = headers
 
         body = body
-        url = self.urlBase + path
+        url = urljoin(self.urlBase, path)
         print url
         response, data = self.http.request(url, "POST",
                                            headers=headers, body=body)
