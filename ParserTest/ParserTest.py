@@ -4,7 +4,7 @@ def main():
     parser = SafeConfigParser()
     parser.add_section('Log')
     parser.set('Log', 'Path', 'config/parser.log')
-    parser.set('Log', 'Size', '100M')
+    parser.set('Log', 'Size', '200')
 
     # write to config file
     with open('config.cfg', 'r+') as f:

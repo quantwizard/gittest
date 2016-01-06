@@ -7,7 +7,7 @@ this is module doc
 # __all__ = ['mo_var', '__module_hide']
 mo_var = 3
 mo_var2 = __name__
-print mo_var2
+# print mo_var2
 
 def module_foo():
     '''

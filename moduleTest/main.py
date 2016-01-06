@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-from moduleLib.moduletest import *
+#from moduleLib.moduletest import *
+from moduleLib import moduletest
 
 a = 0
 b = 'xxx'
@@ -20,7 +21,7 @@ def main():
     print "name in main %s" % __name__
     print "file in main %s" % __file__
     print __package__
-    print "mo_var2 in main %s" % mo_var2
+    print "mo_var2 in main %s" % moduletest.mo_var2
 
 if __name__ == '__main__':
     main()
