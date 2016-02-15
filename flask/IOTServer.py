@@ -6,7 +6,7 @@ from flask import url_for, make_response, render_template
 app = Flask(__name__)
 
 
-@app.route('/', methods = ['POST'])
+@app.route('/', methods = ['POST', 'GET'])
 def handler():
     if request.headers['Content-Type'] == 'text/plain':
         return "Text Message: " + request.data
@@ -14,8 +14,12 @@ def handler():
         with open('./binary', 'wb') as f:
             f.write(request.data)
         return "Binary message got, check file binary"
+    elif request.headers['Content-Type'] == 'application/json':
+        print "received json: %s" % request.data
+	return "OK"
     else:
-        abort(400)
+       	print "received data: %s" % request.data
+	return "OK" 
 
 
 if __name__ == '__main__':
