@@ -1,7 +1,12 @@
+from time import sleep
+
+
 def test():
     # return "111"
     # raise ErrorCode("400", "this is error code.")
-    print "111:this is an error"
+    while 1:
+        print "subprocess is alive."
+        sleep(2)
 
 if __name__ == '__main__':
     test()

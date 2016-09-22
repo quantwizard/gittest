@@ -1,4 +1,4 @@
-testfile = open(r"D:\program\python\test.txt", "rb")
+testfile = open(r"D:\BugReport.txt", "rb")
 print "tell output %s" % testfile.tell()
 '''
 for i in testfile:
@@ -15,12 +15,13 @@ for i in testfile:
 print "now tell again"
 print "tell output %s" % testfile.tell()
 '''
-data = testfile.read(5)
-print data
+# data = testfile.read(5)
+# print data
+testfile.seek(5)
 print "tell output %s" % testfile.tell() 
 
-writefile = open(r"D:\program\python\test2.txt", "wb")
-writefile.write("what are you doing fifth time?\r\nsecond line")
+# writefile = open(r"D:\program\python\test2.txt", "wb")
+# writefile.write("what are you doing fifth time?\r\nsecond line")
 
-writefile.close()
+# writefile.close()
 testfile.close()
